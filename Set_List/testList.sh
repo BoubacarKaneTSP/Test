@@ -8,7 +8,7 @@ python3 createSystem.py
 echo " " > "ResultatList/resultat_$1_process.txt"
 
 #Nombre de test
-for i in `seq 1 2`
+for i in `seq 1 5`
 do
 	echo "====================================== Lancement du test LIST numero $i ======================================"
 	python3 deleteList.py
