@@ -2,8 +2,8 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 
-#numprocess = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80]
-numprocess = [1, 2]
+numprocess = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80]
+#numprocess = [1, 2]
 
 def resultat_set_avg(i):
 	
@@ -51,7 +51,7 @@ resultats_set = np.array(resultats_set, dtype="int")
 table_set = plt.plot(numprocess, resultats_set, marker = "o", label="Set")
 
 
-
+"""
 resultats_list = []
 
 for i in numprocess:
@@ -64,9 +64,10 @@ table_list = plt.plot(numprocess, resultats_list, marker = "o", label = "List")
 all_results = np.array([resultats_set, resultats_list])
 
 print(all_results)
+"""
 
 plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc='lower left', ncol=2, mode="expand", borderaxespad=0.)
 #plt.legend(bbox_to_anchor=(1.01, 0.5), loc='upper left', borderaxespad=0.)
-#plt.yscale("log")
+plt.yscale("log")
 plt.show()
 #plt.savefig("all_results.png"
