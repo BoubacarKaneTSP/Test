@@ -8,7 +8,7 @@ python3 createSystem.py
 
 #Differents workload : % de read
 
-for j in `seq 0 20 40 60 80 100`;
+for j in 0 20 40 60 80 100;
 #for j in 0 60;
 do
 	echo " " > "ResultatSet_Workload/resultat_Workload_Read_$j.txt"
