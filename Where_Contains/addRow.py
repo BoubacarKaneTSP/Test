@@ -11,9 +11,11 @@ def add(value):
 cluster = Cluster()
 session = cluster.connect()
 
-numrow = int(sys.argv[1])
+borneinf = int(sys.argv[1])
+bornesup = int(sys.argv[2])
 
-for i in range(numrow):
+
+for i in range(borneinf, bornesup):
 	add(i)
 	
 

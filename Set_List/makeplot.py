@@ -51,7 +51,6 @@ resultats_set = np.array(resultats_set, dtype="int")
 table_set = plt.plot(numprocess, resultats_set, marker = "o", label="Set")
 
 
-"""
 resultats_list = []
 
 for i in numprocess:
@@ -64,10 +63,10 @@ table_list = plt.plot(numprocess, resultats_list, marker = "o", label = "List")
 all_results = np.array([resultats_set, resultats_list])
 
 print(all_results)
-"""
+
 
 plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc='lower left', ncol=2, mode="expand", borderaxespad=0.)
 #plt.legend(bbox_to_anchor=(1.01, 0.5), loc='upper left', borderaxespad=0.)
-plt.yscale("log")
+#plt.yscale("log")
 plt.show()
 #plt.savefig("all_results.png"

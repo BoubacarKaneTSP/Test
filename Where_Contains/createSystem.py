@@ -11,7 +11,8 @@ def createColumnfamily_set(name):
 		CREATE TABLE IF NOT EXISTS %s(
 			key int,
 			following set<text>,
-			PRIMARY KEY(key))
+			PRIMARY KEY(key)
+		)
 	""" % name)
 	
 
