@@ -9,9 +9,8 @@ python3 createSystem.py
 
 for i in `seq $1 $2`;
 do
-	DIV=$((($3*10)/100))
+	DIV=$((($3*1)/100))
 	
-	echo "follow du process $i"
 	for j in `seq 1 $DIV`;
 	do
 		PROCESS=$(($RANDOM%$3))

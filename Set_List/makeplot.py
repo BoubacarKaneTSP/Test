@@ -64,7 +64,8 @@ all_results = np.array([resultats_set, resultats_list])
 
 print(all_results)
 
-
+plt.ylabel("opé/s/proc")
+plt.xlabel("# process")
 plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc='lower left', ncol=2, mode="expand", borderaxespad=0.)
 #plt.legend(bbox_to_anchor=(1.01, 0.5), loc='upper left', borderaxespad=0.)
 #plt.yscale("log")
