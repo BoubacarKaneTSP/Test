@@ -10,8 +10,8 @@ for type in 'counter' 'list' 'set'
 do
 	echo " " >> "resultat_${type}.txt"
 
-	#for i in 1 2 3 4 5 6 7 8 9 10 12 14 16 18 20 25 30 40 50 60 70 80 90;
-	for i in 1 5 10;
+	for i in 1 2 3 4 5 6 7 8 9 10 12 14 16 18 20 25 30 40 50 60 70 80 90;
+	#for i in 1 5 10;
 	do
 		echo " " > "Resultats/resultats_${type}_${i}_process.txt"
 		for j in `seq 1 $NBTEST`
