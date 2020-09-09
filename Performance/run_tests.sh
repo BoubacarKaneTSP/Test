@@ -4,7 +4,7 @@
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 trap "pkill -KILL -P $$; exit 255" SIGINT SIGTERM
 
-let "NBITERATION=3"
+let "NBITERATION=10"
 
 echo "" > "Resultats.txt" 
 

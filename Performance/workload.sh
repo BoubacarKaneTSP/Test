@@ -12,7 +12,7 @@ echo "0" > "Perf/resultat_client_$NUMCLIENT.txt"
 while [ 1 ]
 do
 	python3 vide.py
-	
+	#echo "1"
 	NBOPERATION=$(($NBOPERATION+1))
 	
 	echo "$NBOPERATION" >> "Perf/resultat_client_$NUMCLIENT.txt"
