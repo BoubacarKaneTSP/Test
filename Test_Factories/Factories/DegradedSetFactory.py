@@ -6,7 +6,10 @@ from cassandra.cqlengine.management import sync_table
 from cassandra.cqlengine.management import create_keyspace_simple
 from cassandra.cqlengine.connection import register_connection
 from cassandra.cqlengine.connection import set_default_connection
+from cassandra.auth import PlainTextAuthProvider
 import os
+
+
 
 class DSet(Model):
 	__keyspace__ = 'degradedset'
@@ -46,7 +49,8 @@ class DegradedSetFactory(AbstractSet):
 		return sorted(total)
 		
 	def connect(self):
-		self.cluster = Cluster(protocol_version=3)
+                self.auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra')
+		self.cluster = Cluster(protocol_version=3,auth_provider=self.auth_provider)
 		self.session = self.cluster.connect()
 		#self.session.execute("DROP KEYSPACE IF EXISTS degradedset")
 		self.session.execute("CREATE KEYSPACE IF NOT EXISTS degradedset WITH replication = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 } AND durable_writes = false");

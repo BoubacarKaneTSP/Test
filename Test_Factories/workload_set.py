@@ -4,7 +4,7 @@ import threading
 import Factories.SetFactory as SFactory
 
 S = SFactory.SetFactory()
-obj = S.create_set("CSF","test")
+obj = S.create_set("DSF","test")
 NBOPERATION = 10000
 
 def work():
