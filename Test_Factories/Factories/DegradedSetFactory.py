@@ -49,7 +49,7 @@ class DegradedSetFactory(AbstractSet):
 		return sorted(total)
 		
 	def connect(self):
-                self.auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra')
+    	self.auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra')
 		self.cluster = Cluster(protocol_version=3,auth_provider=self.auth_provider)
 		self.session = self.cluster.connect()
 		#self.session.execute("DROP KEYSPACE IF EXISTS degradedset")
