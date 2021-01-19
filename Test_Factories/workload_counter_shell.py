@@ -4,14 +4,17 @@ import Factories.CounterFactory as CFactory
 
 C = CFactory.CounterFactory()
 obj = C.create_counter("CCF","test")
-NBOPERATION = 10000
+
+NBOPERATION = 10000000
 NBOPERATION_p = 0
+
+obj.increment(1)
 
 START = time.time()
 
 while NBOPERATION_p < NBOPERATION:
 	
-	obj.increment(1)
+	obj.read()
 
 	NBOPERATION_p = NBOPERATION_p + 1
 

@@ -4,13 +4,13 @@
 trap "pkill -KILL -P $$; exit 255" SIGINT SIGTERM
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 
-NBTEST="2"
+NBTEST="3"
 
 for type in 'counter' 'list' 'set'
 do
-	echo " " >> "resultat_${type}.txt"
+	echo " " > "resultat_${type}.txt"
 
-	for i in 1 2 3 4 5 6 7 8 9 10 12 14 16 18 20 25 30 40 50 60 70 80 90;
+	for i in 1 2 3 4 5 6 7 8 9 10 12 14 16 18 20 25 30;#40 50 60 70 80 90;
 	#for i in 1 5 10;
 	do
 		echo " " > "Resultats/resultats_${type}_${i}_process.txt"
@@ -22,11 +22,11 @@ do
 			for process in `seq 1 $i`
 			do
 				echo "*lancement process $process *"
-				python3 workload_${type}_shell.py $i >> "Resultats/resultats_${type}_${i}_process.txt" &
+				python3 workload_${type}_shell.py >> "Resultats/resultats_${type}_${i}_process.txt" &
 			done
 			
 			wait 
-			echo "go"
+			echo "fin"
 
 		done
 		

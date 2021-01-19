@@ -30,5 +30,5 @@ total = 0
 for i in array:
 	total += i
 	
-val = (total / (nb_process*nb_test) )
+val = (total / (nb_test) )
 print (val)

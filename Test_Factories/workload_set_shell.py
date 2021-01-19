@@ -5,14 +5,16 @@ import Factories.SetFactory as SFactory
 S = SFactory.SetFactory()
 obj = S.create_set("CSF","test")
 
-NBOPERATION = 10000
+NBOPERATION = 10000000
 NBOPERATION_p = 0
+
+obj.add("1")
 
 START = time.time()
 
 while NBOPERATION_p < NBOPERATION:
 
-	obj.add("1")
+	obj.read()
 
 	NBOPERATION_p = NBOPERATION_p + 1
 
