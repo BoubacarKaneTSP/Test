@@ -6,6 +6,7 @@ from cassandra.cqlengine.management import sync_table
 from cassandra.cqlengine.management import create_keyspace_simple
 from cassandra.cqlengine.connection import register_connection
 from cassandra.cqlengine.connection import set_default_connection
+from cassandra.auth import PlainTextAuthProvider
 import Factories.CounterFactory as CFactory
 import Factories.MultipleRowCounterFactory as MRCFactory
 

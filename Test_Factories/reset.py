@@ -2,8 +2,10 @@ from cassandra.cluster import Cluster
 import Factories.CounterFactory as CFactory
 import Factories.SetFactory as SFactory
 import Factories.ListFactory as LFactory
+from cassandra.auth import PlainTextAuthProvider
 
-cluster = Cluster()
+auth = PlainTextAuthProvider(username='cassandra', password='cassandra')
+cluster = Cluster(protocol_version=3,auth_provider=auth)
 session = cluster.connect()
 
 session.execute("""DROP KEYSPACE IF EXISTS multiplerowcounter""")
