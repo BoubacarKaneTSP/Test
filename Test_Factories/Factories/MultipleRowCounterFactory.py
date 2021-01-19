@@ -62,7 +62,8 @@ class MultipleRowCounterFactory(AbstractCounter):
 		return total
 		
 	def connect(self):
-		self.cluster = Cluster(protocol_version=3)
+		self.auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra')
+		self.cluster = Cluster(protocol_version=3,auth_provider=self.auth_provider)
 		self.session = self.cluster.connect()
 		#self.session.execute("DROP KEYSPACE IF EXISTS multiplerowcounter")
 		self.session.execute("CREATE KEYSPACE IF NOT EXISTS multiplerowcounter WITH replication = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 } AND durable_writes = false");
