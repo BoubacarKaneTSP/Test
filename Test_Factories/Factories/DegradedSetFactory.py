@@ -8,6 +8,7 @@ from cassandra.cqlengine.connection import register_connection
 from cassandra.cqlengine.connection import set_default_connection
 from cassandra.auth import PlainTextAuthProvider
 import os
+from cassandra.cqlengine.query import LWTException
 
 
 
@@ -28,9 +29,12 @@ class DegradedSetFactory(AbstractSet):
 		if not self.all_set: #Check if the dict is empty
 			self.connect()
 
-		if self.id not in self.all_set:
-			self.all_set[self.id] = DSet.create(id_set=self.id, id_writer=str(os.getpid()))
-
+		#if self.id not in self.all_set: #Check if the set already exists
+		try:
+			self.all_set[self.id] = DSet.if_not_exists().create(id_set=self.id, id_writer=str(os.getpid()))
+		except LWTException as e:
+			self.all_set[self.id] = DSet.objects.filter(id_set=self.id).get()
+			
 	def add(self, elem):
 
 		self.all_set[self.id].ensemble.add(elem)
@@ -49,6 +53,8 @@ class DegradedSetFactory(AbstractSet):
 		return sorted(total)
 		
 	def connect(self):
+		if os.getenv('CQLENG_ALLOW_SCHEMA_MANAGEMENT') is None:
+			os.environ['CQLENG_ALLOW_SCHEMA_MANAGEMENT'] = '1'
 		self.auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra')
 		self.cluster = Cluster(protocol_version=3,auth_provider=self.auth_provider)
 		self.session = self.cluster.connect()

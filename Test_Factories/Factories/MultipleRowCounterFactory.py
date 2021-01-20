@@ -8,19 +8,8 @@ from cassandra.cqlengine.connection import register_connection
 from cassandra.cqlengine.connection import set_default_connection
 from cassandra.auth import PlainTextAuthProvider
 import os
+from cassandra.cqlengine.query import LWTException
 
-class LWTException(CQLEngineException):
-	"""Lightweight conditional exception.
-
-	This exception will be raised when a write using an `IF` clause could not be
-	applied due to existing data violating the condition. The existing data is
-	available through the ``existing`` attribute.
-
-	:param existing: The current state of the data which prevented the write.
-	"""
-	def __init__(self, existing):
-		super(LWTException, self).__init__("LWT Query was not applied")
-		self.existing = existing
 
 class MRCCounter(Model):
 	__keyspace__ = 'multiplerowcounter'
@@ -39,12 +28,10 @@ class MultipleRowCounterFactory(AbstractCounter):
 		if not self.all_counter: #Check if the dict is empty
 			self.connect()
 		
-		if self.id not in self.all_counter:
-			try:
-				self.all_counter[self.id] = MRCCounter.create(id=self.id, id_writer=str(os.getpid()))
-			except LWTException as e:
-				#print("The counter already exists", e.existing)
-				pass
+		try:
+			self.all_counter[self.id] = MRCCounter.create(id=self.id, id_writer=str(os.getpid()))
+		except LWTException as e:
+			self.all_counter[self.id] = MRCCounter.objects.filter(id=self.id).get()
 		
 	def increment(self, value):
 		
@@ -63,6 +50,8 @@ class MultipleRowCounterFactory(AbstractCounter):
 		return total
 		
 	def connect(self):
+		if os.getenv('CQLENG_ALLOW_SCHEMA_MANAGEMENT') is None:
+			os.environ['CQLENG_ALLOW_SCHEMA_MANAGEMENT'] = '1'
 		self.auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra')
 		self.cluster = Cluster(protocol_version=3,auth_provider=self.auth_provider)
 		self.session = self.cluster.connect()

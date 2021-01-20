@@ -3,6 +3,10 @@ import Factories.CounterFactory as CFactory
 import Factories.SetFactory as SFactory
 import Factories.ListFactory as LFactory
 from cassandra.auth import PlainTextAuthProvider
+import os
+
+if os.getenv('CQLENG_ALLOW_SCHEMA_MANAGEMENT') is None:
+    os.environ['CQLENG_ALLOW_SCHEMA_MANAGEMENT'] = '1'
 
 auth = PlainTextAuthProvider(username='cassandra', password='cassandra')
 cluster = Cluster(protocol_version=3,auth_provider=auth)

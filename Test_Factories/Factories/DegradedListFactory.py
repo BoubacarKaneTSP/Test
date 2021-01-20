@@ -9,9 +9,14 @@ from cassandra.cqlengine.connection import set_default_connection
 from cassandra.auth import PlainTextAuthProvider
 import Factories.CounterFactory as CFactory
 import Factories.MultipleRowCounterFactory as MRCFactory
-
 import os
+from cassandra.cqlengine.query import LWTException
 
+class CCounter(Model):
+	__keyspace__ = 'cassandracounter'
+	id = columns.Text(primary_key=True)
+	count = columns.Counter()
+	
 class DList(Model):
 	__keyspace__ = 'degradedlist'
 	id_list = columns.Text(primary_key=True)
@@ -29,11 +34,14 @@ class DegradedListFactory(AbstractList):
 
 		if not self.all_list: #Check if the dict is empty
 			self.connect()
-
-		if self.id not in self.all_list:
+		
+		try:
+			self.all_list[self.id] = DList.if_not_exists().create(id_list=self.id, id_writer=str(os.getpid()))
 			C = CFactory.CounterFactory()
 			self.Count = C.create_counter("CCF",self.id)
-			self.all_list[self.id] = DList.create(id_list=self.id, id_writer=str(os.getpid()))
+		except LWTException as e:
+			self.all_list[self.id] = DList.objects.filter(id_list=self.id).get()
+			self.Count = CCounter.objects.filter(id=self.id).get()
 
 	def add(self, elem):
 		
@@ -64,6 +72,8 @@ class DegradedListFactory(AbstractList):
 		return (values)
 		
 	def connect(self):
+		if os.getenv('CQLENG_ALLOW_SCHEMA_MANAGEMENT') is None:
+			os.environ['CQLENG_ALLOW_SCHEMA_MANAGEMENT'] = '1'
 		self.auth_provider = PlainTextAuthProvider(username='cassandra', password='cassandra')
 		self.cluster = Cluster(protocol_version=3,auth_provider=self.auth_provider)
 		self.session = self.cluster.connect()
