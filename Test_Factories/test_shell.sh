@@ -4,7 +4,7 @@
 trap "pkill -KILL -P $$; exit 255" SIGINT SIGTERM
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 
-NBTEST="3"
+NBTEST="10"
 
 for type in 'counter' 'list' 'set'
 do
