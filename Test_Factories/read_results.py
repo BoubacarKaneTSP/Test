@@ -2,8 +2,8 @@ import os
 import sys
 import numpy as np
 
-def read_result(t,i):
-	resultat = open("Resultats/resultats_"+str(t)+"_"+str(i)+"_process.txt","r")
+def read_result(data_type,nb_process):
+	resultat = open("Resultats/resultats_"+str(data_type)+"_"+str(nb_process)+"_process.txt","r")
 
 	contenu = resultat.read()
 
@@ -30,5 +30,5 @@ total = 0
 for i in array:
 	total += i
 	
-val = (total / (nb_process*nb_test) )
+val = (total / (nb_test) )
 print (val)

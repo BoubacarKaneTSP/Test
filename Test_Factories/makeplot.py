@@ -2,8 +2,8 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 
-numprocess = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 25, 30, 40, 50, 60, 70, 80, 90]
-#numprocess = [1, 2]
+numprocess = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 25, 30, 40]
+#numprocess = [1, 5, 10]
 
 file_set = open("resultat_set.txt","r")
 file_list = open("resultat_list.txt","r")
@@ -19,9 +19,9 @@ tmp_counter = resultats_counter[:len(numprocess)]
 
 
 
-r_set = [int(float(i)/j) for i,j in zip(tmp_set, numprocess)]
-r_list = [int(float(i)/j) for i,j in zip(tmp_list, numprocess)]
-r_counter = [int(float(i)/j) for i,j in zip(tmp_counter,numprocess)]
+r_set = [int(float(i)) for i in tmp_set]
+r_list = [int(float(i)) for i in tmp_list]
+r_counter = [int(float(i)) for i in tmp_counter]
 
 for a,b in zip(r_set, numprocess):
     print (a,b)
@@ -37,7 +37,7 @@ plt.plot(numprocess, r_counter, marker = "o", label="Counter")
 
 
 
-plt.ylabel("opé/s")
+plt.ylabel("ope/s")
 plt.xlabel("# processes")
 plt.legend(bbox_to_anchor=(0., 1.02, 1., .102), loc='lower left', ncol=2, mode="expand", borderaxespad=0.)
 #plt.legend(bbox_to_anchor=(1.01, 0.5), loc='upper left', borderaxespad=0.)

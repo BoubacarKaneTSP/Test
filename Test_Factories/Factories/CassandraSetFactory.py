@@ -33,7 +33,11 @@ class CassandraSetFactory(AbstractSet):
             self.all_set[self.id] = CSet.objects.filter(id=self.id).get()
     
     def add(self, elem):
-        self.all_set[self.id].ensemble.add(str(elem))
+        #print("add " + str(elem) + " in:", self.all_set[self.id].ensemble)
+        #print(CSet.objects(id=self.id), "|",self.all_set[self.id].ensemble, self.id)
+        #self.all_set[self.id].update(ensemble__add={str(elem)})
+        CSet.objects(id=self.id).update(ensemble__add={str(elem)})
+        #self.all_set[self.id].ensemble = self.all_set[self.id].ensemble.union({str(elem)})
         self.all_set[self.id].save()
 
     def remove(self, elem):
