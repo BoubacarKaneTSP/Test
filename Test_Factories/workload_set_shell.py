@@ -15,8 +15,8 @@ START = time.time()
 
 while NBOPERATION_p < NBOPERATION:
 
-	#obj.add(str(random.randint(0,100)))
-	obj.read()
+	obj.add(str(random.randint(0,100000)))
+	#obj.read()
 	NBOPERATION_p = NBOPERATION_p + 1
 
 EXECTIME = time.time() - START

@@ -8,13 +8,14 @@ obj = L.create_list("CLF","test")
 NBOPERATION = 1000000
 NBOPERATION_p = 0
 
-obj.add("1")
+#obj.add("1")
 
 START = time.time()
 
 while NBOPERATION_p < NBOPERATION:
 
-	obj.read()
+	obj.add(str(random.randint(0,100000)))
+	#obj.read()
 
 	NBOPERATION_p = NBOPERATION_p + 1
 
