@@ -6,7 +6,7 @@ import random
 S = SFactory.SetFactory()
 obj = S.create_set("CSF","test")
 
-NBOPERATION = 10
+NBOPERATION = 1000000
 NBOPERATION_p = 0
 
 obj.add("1")

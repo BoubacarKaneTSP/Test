@@ -5,7 +5,7 @@ import Factories.ListFactory as LFactory
 L = LFactory.ListFactory()
 obj = L.create_list("CLF","test")
 
-NBOPERATION = 100
+NBOPERATION = 1000000
 NBOPERATION_p = 0
 
 obj.add("1")

@@ -5,7 +5,7 @@ import Factories.CounterFactory as CFactory
 C = CFactory.CounterFactory()
 obj = C.create_counter("CCF","test")
 
-NBOPERATION = 100
+NBOPERATION = 1000000
 NBOPERATION_p = 0
 
 obj.increment(1)
