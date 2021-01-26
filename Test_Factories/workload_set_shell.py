@@ -2,11 +2,12 @@ import time
 import sys
 import Factories.SetFactory as SFactory
 import random
+import os
 
 S = SFactory.SetFactory()
-obj = S.create_set("CSF","test")
+obj = S.create_set("CSF","test"+str(os.getpid()))
 
-NBOPERATION = 10000
+NBOPERATION = 1000000
 NBOPERATION_p = 0
 
 obj.add("1")
@@ -15,8 +16,8 @@ START = time.time()
 
 while NBOPERATION_p < NBOPERATION:
 
-	obj.add(str(random.randint(0,100000)))
-	#obj.read()
+	#obj.add(str(random.randint(0,100000)))
+	obj.read()
 	NBOPERATION_p = NBOPERATION_p + 1
 
 EXECTIME = time.time() - START

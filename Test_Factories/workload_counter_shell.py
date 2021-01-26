@@ -1,11 +1,12 @@
 import time
 import sys
 import Factories.CounterFactory as CFactory
+import os
 
 C = CFactory.CounterFactory()
-obj = C.create_counter("CCF","test")
+obj = C.create_counter("CCF","test"+str(os.getpid()))
 
-NBOPERATION = 100000
+NBOPERATION = 1000000
 NBOPERATION_p = 0
 
 
@@ -13,8 +14,9 @@ START = time.time()
 
 while NBOPERATION_p < NBOPERATION:
 	
-	obj.increment(1)
-
+	#obj.increment(1)
+	obj.read()
+	
 	NBOPERATION_p = NBOPERATION_p + 1
 
 EXECTIME = time.time() - START
