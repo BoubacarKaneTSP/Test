@@ -30,7 +30,7 @@ print("r_set: ",r_set)
 print("r_list: ",r_list)
 print("r_set: ",r_set)
 
-#plt.plot(numprocess, r_set, marker = "o", label="Set")
+plt.plot(numprocess, r_set, marker = "o", label="Set")
 plt.plot(numprocess, r_list, marker = "o", label="List")
 plt.plot(numprocess, r_counter, marker = "o", label="Counter")
 
