@@ -1,10 +1,10 @@
 import time
 import sys
 import Factories.CounterFactory as CFactory
-import os
+#import os
 
 C = CFactory.CounterFactory()
-obj = C.create_counter("CCF","test"+str(os.getpid()))
+obj = C.create_counter("CCF","test")
 
 NBOPERATION = 1000000
 NBOPERATION_p = 0
