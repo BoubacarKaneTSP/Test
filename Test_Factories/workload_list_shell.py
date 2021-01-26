@@ -1,11 +1,12 @@
 import time
 import sys
 import Factories.ListFactory as LFactory
+import random
 
 L = LFactory.ListFactory()
 obj = L.create_list("CLF","test")
 
-NBOPERATION = 1000000
+NBOPERATION = 10000
 NBOPERATION_p = 0
 
 #obj.add("1")

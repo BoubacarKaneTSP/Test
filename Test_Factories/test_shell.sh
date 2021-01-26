@@ -6,7 +6,7 @@ trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 
 NBTEST="10"
 
-for type in 'counter' 'list' 'set'
+for type in 'list' 'set' #'counter'
 do
 	echo " " > "resultat_${type}.txt"
 
