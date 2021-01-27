@@ -2,10 +2,10 @@ import time
 import sys
 import Factories.SetFactory as SFactory
 import random
-#import os
+import os
 
 S = SFactory.SetFactory()
-obj = S.create_set("CSF","test")
+obj = S.create_set("CSF","test"+str(os.getpid()))
 
 NBOPERATION = 1000
 NBOPERATION_p = 0

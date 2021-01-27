@@ -2,10 +2,10 @@ import time
 import sys
 import Factories.ListFactory as LFactory
 import random
-#import os
+import os
 
 L = LFactory.ListFactory()
-obj = L.create_list("CLF","test")
+obj = L.create_list("CLF","test"+str(os.getpid()))
 
 NBOPERATION = 1000
 NBOPERATION_p = 0
