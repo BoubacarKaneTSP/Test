@@ -3,7 +3,7 @@ import sys
 import numpy as np
 
 def read_result(data_type,nb_process):
-	resultat = open("Resultats/resultats_"+str(data_type)+"_"+str(nb_process)+"_process.txt","r")
+	resultat = open("Resultats/resultats_"+str(data_type)+"_"+str(nb_process)+"_size.txt","r")
 
 	contenu = resultat.read()
 

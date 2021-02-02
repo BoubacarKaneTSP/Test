@@ -5,18 +5,18 @@ import random
 import os
 
 S = SFactory.SetFactory()
-obj = S.create_set("CSF","test"+str(os.getpid()))
+obj = S.create_set("CSF","test")
 
 NBOPERATION = 1000
 NBOPERATION_p = 0
 
-#obj.add("1")
 
 START = time.time()
 
 while NBOPERATION_p < NBOPERATION:
 
-	obj.add(str(random.randint(0,100000)))
+	obj.add(str(NBOPERATION_p))
+	#obj.add(str(random.randint(0,100000)))
 	#obj.read()
 	NBOPERATION_p = NBOPERATION_p + 1
 
