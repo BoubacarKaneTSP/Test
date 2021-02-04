@@ -10,7 +10,7 @@ for type in 'set' #'list' 'set'
 do
 	#echo " " > "resultat_${type}.txt"
 
-	for i in 50000;
+	for i in 10 100 1000 10000 20000 30000 40000 50000;
 	#for i in 1 10 100;
 	do
 		echo " " > "Resultats/resultats_${type}_${i}_size.txt"

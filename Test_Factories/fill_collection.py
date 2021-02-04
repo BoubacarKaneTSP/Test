@@ -6,7 +6,7 @@ import random
 import os
 
 c_type = sys.argv[1]
-size = sys.argv[2]
+#size = sys.argv[2]
 
 if c_type == "list":
     L = LFactory.ListFactory()
@@ -16,17 +16,17 @@ else:
     obj = S.create_set("CSF","test")
 
 
-NBOPERATION = int(size)
+NBOPERATION = 50000#int(size)
 NBOPERATION_p = 0
 
 START = time.time()
+ensemble = [10, 100, 1000, 10000, 20000, 30000, 40000, 50000]
 
-while NBOPERATION_p < NBOPERATION:
+while NBOPERATION_p <= NBOPERATION:
 
-    obj.add(str(NBOPERATION_p+2000000))
+    if(NBOPERATION_p in ensemble):
+        print(time.time() - START)
+              
+    obj.add(str(NBOPERATION_p))
 
     NBOPERATION_p = NBOPERATION_p + 1
-
-EXECTIME = time.time() - START
-
-print(str(EXECTIME))
