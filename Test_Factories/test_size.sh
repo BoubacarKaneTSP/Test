@@ -4,14 +4,14 @@
 trap "pkill -KILL -P $$; exit 255" SIGINT SIGTERM
 trap "trap - SIGTERM && kill -- -$$" SIGINT SIGTERM EXIT
 
-NBTEST="2"
+NBTEST="7"
 
-for type in 'list' 'set'
+for type in 'set' #'list' 'set'
 do
-	echo " " > "resultat_${type}.txt"
+	#echo " " > "resultat_${type}.txt"
 
-	#for i in 10 100 1000 10000 20000 30000 40000 50000 100000 1000000;
-	for i in 1 10 100;
+	for i in 50000;
+	#for i in 1 10 100;
 	do
 		echo " " > "Resultats/resultats_${type}_${i}_size.txt"
 		for j in `seq 1 $NBTEST`
