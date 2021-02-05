@@ -2,7 +2,7 @@ import os
 import matplotlib.pyplot as plt
 import numpy as np
 
-numprocess = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 25, 30, 40]
+#numprocess = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 12, 14, 16, 18, 20, 25, 30, 40]
 #numprocess = [1, 5, 10]
 numprocess = [10, 100, 1000, 10000, 20000, 30000, 40000, 50000]
 file_set = open("resultat_set.txt","r")
