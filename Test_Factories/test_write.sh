@@ -9,8 +9,8 @@ NBTEST="10"
 for i in `seq 1 $NBTEST`
 do
 	echo "Lancement du test writing pour un registre (test numero $i)"
-	python3 reset.py
-	python3 workload_write.py >> "Resultats/resultats_registre_test_${i}_write.txt"
+	#python3 reset.py
+	#python3 workload_write.py >> "Resultats/resultats_registre_test_${i}_write.txt"
 	echo "fin"
 done
 
@@ -23,7 +23,15 @@ do
 	do
 		echo "Lancement du test writing $type (test numero $j)"
 		python3 reset.py
-		python3 fill_collection.py $type >> "Resultats/resultats_${type}_test_${j}_write.txt"
+		if [ $type = "list" ] && [ $j -ge 5 ]
+		then
+			echo "List"
+			python3 fill_collection.py $type >> "Resultats/resultats_${type}_test_${j}_write.txt"
+		elif [ $type = "set" ]
+		then
+			echo "set"
+			python3 fill_collection.py $type >> "Resultats/resultats_${type}_test_${j}_write.txt"
+		fi
 		echo "fin"
 	done
 
